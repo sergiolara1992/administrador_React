@@ -1,52 +1,41 @@
-import { useState, useEffect  } from "react";
+import { useState, useEffect } from "react";
 import Error from "./Error";
 
-
 const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
-  const [nombre, setNombre] = useState('');
+  const [nombre, setNombre] = useState("");
   const [propietario, setPropietario] = useState("");
   const [email, setEmail] = useState("");
   const [fecha, setFecha] = useState("");
   const [sintomas, setSintomas] = useState("");
 
-  const [error, setError ] = useState (false)
-
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (Object.keys(paciente).length > 0) {
-      setNombre(paciente.nombre)
+      setNombre(paciente.nombre);
       setPropietario(paciente.propietario);
       setEmail(paciente.email);
       setFecha(paciente.fecha);
       setSintomas(paciente.sintomas);
-      
     }
-  }, [paciente])
-
-
-
-
+  }, [paciente]);
 
   const generarId = () => {
-    const random = Math.random().toString(36).substring(2)
-    const fecha = Date.now().toString()
-    return random + fecha
-
-  }
-
+    const random = Math.random().toString(36).substring(2);
+    const fecha = Date.now().toString();
+    return random + fecha;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-
     /* VALIDACION DEL FORMULARIO */
-    if ([nombre, propietario, email, fecha, sintomas].includes('')) {
-     
-      setError(true)
+    if ([nombre, propietario, email, fecha, sintomas].includes("")) {
+      setError(true);
       return;
-    } 
+    }
 
-    setError(false)
+    setError(false);
 
     /* OBJETO DE PACIENTE */
 
@@ -55,33 +44,31 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
       propietario,
       email,
       fecha,
-      sintomas
-    }
+      sintomas,
+    };
 
     if (paciente.id) {
       /* EDITANDO EL REGISTRO */
-      objetoPaciente.id = paciente.id
-      const pacientesActualizados = pacientes.map( pacienteState => pacienteState.id === paciente.id ? objetoPaciente : pacienteState )
+      objetoPaciente.id = paciente.id;
+      const pacientesActualizados = pacientes.map((pacienteState) =>
+        pacienteState.id === paciente.id ? objetoPaciente : pacienteState
+      );
 
-      setPacientes(pacientesActualizados)
-      setPaciente({})
-      
+      setPacientes(pacientesActualizados);
+      setPaciente({});
     } else {
       /* NUEVO REGISTRO */
-      objetoPaciente.id = generarId()
+      objetoPaciente.id = generarId();
       setPacientes([...pacientes, objetoPaciente]);
     }
 
     /* REINICIAR EL FORM */
-    setNombre('')
-    setPropietario('')
-    setEmail('')
-    setFecha('')
-    setSintomas('')
-      
-    }
-      
-  
+    setNombre("");
+    setPropietario("");
+    setEmail("");
+    setFecha("");
+    setSintomas("");
+  };
 
   return (
     <div className="md:w-1/2 lg:w-2/5 mx-5">
@@ -188,12 +175,11 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
         <input
           type="submit"
           className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors mt-5 "
-          value= {paciente.id ? 'Editar Paciente' : 'Agregar Paciente' }
-         
+          value={paciente.id ? "Editar Paciente" : "Agregar Paciente"}
         />
       </form>
     </div>
   );
-}
+};
 
-export default Formulario
+export default Formulario;
