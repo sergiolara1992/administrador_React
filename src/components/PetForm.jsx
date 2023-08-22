@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Error from "./Error";
 
-const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
+const PetForm = ({ pacientes, setPacientes, paciente, setPaciente }) => {
   const [nombre, setNombre] = useState("");
   const [propietario, setPropietario] = useState("");
   const [email, setEmail] = useState("");
@@ -37,30 +37,16 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
 
     setError(false);
 
-    /* OBJETO DE PACIENTE */
+    /* PETICIONES AXIOS */
 
-    const objetoPaciente = {
-      nombre,
-      propietario,
-      email,
-      fecha,
-      sintomas,
-    };
+    const loginUrl = "https://ukks5dvo8b.execute-api.us-east-1.amazonaws.com/dev/userpet/create";
+    
 
-    if (paciente.id) {
-      /* EDITANDO EL REGISTRO */
-      objetoPaciente.id = paciente.id;
-      const pacientesActualizados = pacientes.map((pacienteState) =>
-        pacienteState.id === paciente.id ? objetoPaciente : pacienteState
-      );
 
-      setPacientes(pacientesActualizados);
-      setPaciente({});
-    } else {
-      /* NUEVO REGISTRO */
-      objetoPaciente.id = generarId();
-      setPacientes([...pacientes, objetoPaciente]);
-    }
+
+    axios.post(loginUrl, info).then((response) => {});
+
+    
 
     /* REINICIAR EL FORM */
     setNombre("");
@@ -182,4 +168,4 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
   );
 };
 
-export default Formulario;
+export default PetForm;

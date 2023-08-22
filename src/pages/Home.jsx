@@ -3,18 +3,17 @@ import { FcGoogle } from "react-icons/fc"
 
 const Home = () => {
   return (
-    <div className="container grid grid-flow-col items-center justify-center gap-20   ">
+    <div className="container grid md:grid-flow-col  items-center justify-center gap-20 ">
 
 
       <div>
         <img
-          className=""
           src="https://www.dogbible.com/i/es/weimaranerprofile.png"
           alt=""
         />
       </div>
 
-      <div className="shadow px-10 py-20 rounded-3xl border-2 border-gray-100 mr-4 ">
+      <div className="shadow px-10 py-20 rounded-3xl border-2 border-gray-300 mr-4 ">
         <h1 className="text-5xl font-semibold text-center">Welcome Back</h1>
         <p className="font-medium text-lg text-gray-500 mt-5 text-center">
           Please enter your dates
@@ -37,7 +36,7 @@ const Home = () => {
         <div className="mt-8 flex justify-between items-center text-lg font-bold">
           <div>
             <input type="checkbox" id="remember" />
-            <label className="ml-2  text-base" for="remember">
+            <label className="ml-2  text-base" htmlFor="remember">
               Remember for 30 days
             </label>
           </div>

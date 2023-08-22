@@ -1,13 +1,11 @@
 import { AiOutlineUser } from "react-icons/ai";
-
-
-
+import { Link } from "react-router-dom";
 
 
 
 const Header = () => {
   return (
-    <header className="bg-blue-900 text-white w-full h-12 md:h-36 flex items-center justify-between  sticky top-0 mb-8">
+    <header className="bg-blue-900 text-white w-full h-24 md:h-36 flex items-center justify-between  sticky top-0 mb-8">
       <div className="container flex justify-between items-center h-14">
         <a href="/">
           <img
@@ -19,8 +17,8 @@ const Header = () => {
 
         <div className="">
           <ul className="flex gap-8 font-medium uppercase">
-            <a href="./">Home</a>
-            <a href="../pages/forms.jsx">Form</a>
+            <Link to={"/"}>Home</Link>
+            <Link to={"/formulario"}>Form</Link>
             <a href="">Categories</a>
             <a href="">Contact</a>
           </ul>

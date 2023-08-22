@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import Formulario from "../components/Formulario";
-import Header from "../components/Header";
-import ListadoPacientes from "../components/ListadoPacientes";
-import Nav from "./Footer";
 
-function App() {
+
+import ListadoPacientes from "../components/ListadoPacientes";
+import Forms from "../components/forms";
+
+
+function Form() {
   const [pacientes, setPacientes] = useState([]);
   const [paciente, setPaciente] = useState({});
 
@@ -29,10 +30,23 @@ function App() {
 
   return (
     <div className="container mx-auto mt-20">
-      <Nav />
-      <Header />
       <div className="mt-12 md:flex  ">
-        <Formulario
+        <Forms
+          pacientes={pacientes}
+          setPacientes={setPacientes}
+          paciente={paciente}
+          setPaciente={setPaciente}
+        />
+
+        <ListadoPacientes
+          pacientes={pacientes}
+          setPaciente={setPaciente}
+          eliminarPaciente={eliminarPaciente}
+        />
+      </div>
+
+      <div className="mt-12 md:flex  ">
+        <Forms
           pacientes={pacientes}
           setPacientes={setPacientes}
           paciente={paciente}
@@ -49,4 +63,4 @@ function App() {
   );
 }
 
-export default App;
+export default Form;
