@@ -24,7 +24,8 @@ const Header = () => {
           </ul>
         </div>
 
-        <div>
+        <div className="flex gap-6">
+          <Link to={"/register"}>Create Free Account</Link>
           <a href="">
             <AiOutlineUser className="w-10 h-10 rounded-full bg-white p-2 flex items-center justify-center text-black hover:bg-white/[0.5] cursor-pointer" />{" "}
           </a>

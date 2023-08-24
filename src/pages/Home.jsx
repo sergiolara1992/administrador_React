@@ -36,7 +36,7 @@ const Home = () => {
         <div className="mt-8 flex justify-between items-center text-lg font-bold">
           <div>
             <input type="checkbox" id="remember" />
-            <label className="ml-2  text-base" htmlFor="remember">
+            <label className="ml-2 text-base" htmlFor="remember">
               Remember for 30 days
             </label>
           </div>

@@ -3,6 +3,7 @@ import Footer from '../components/Footer'
 import Home from '../pages/Home'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Form from '../pages/Form'
+import Register from '../pages/Register'
 
 
 
@@ -15,6 +16,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register/>} />
           <Route path="/formulario" element={<Form />} />
         </Routes>
       </BrowserRouter>

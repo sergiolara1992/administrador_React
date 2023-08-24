@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
 import Error from "./Error";
+import axios from "axios";
+import React from "react";
+
+
+
 
 const PetForm = ({ pacientes, setPacientes, paciente, setPaciente }) => {
   const [nombre, setNombre] = useState("");
@@ -7,8 +12,16 @@ const PetForm = ({ pacientes, setPacientes, paciente, setPaciente }) => {
   const [email, setEmail] = useState("");
   const [fecha, setFecha] = useState("");
   const [sintomas, setSintomas] = useState("");
-
+  
+  const [user, setUser] = React.useState({email:'', firstName:'', middleName:'', firstLastName:'', secondLastName: '', password:'' });
   const [error, setError] = useState(false);
+
+  const handleChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   useEffect(() => {
     if (Object.keys(paciente).length > 0) {
@@ -28,6 +41,8 @@ const PetForm = ({ pacientes, setPacientes, paciente, setPaciente }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("primerPaso");
+    
 
     /* VALIDACION DEL FORMULARIO */
     if ([nombre, propietario, email, fecha, sintomas].includes("")) {
@@ -39,12 +54,14 @@ const PetForm = ({ pacientes, setPacientes, paciente, setPaciente }) => {
 
     /* PETICIONES AXIOS */
 
+
+    console.log("segundoPaso");
     const loginUrl = "https://ukks5dvo8b.execute-api.us-east-1.amazonaws.com/dev/userpet/create";
     
 
-
-
-    axios.post(loginUrl, info).then((response) => {});
+    axios.post(loginUrl, user).then((response) => {
+      console.log("tercerPaso");
+    });
 
     
 
@@ -87,8 +104,8 @@ const PetForm = ({ pacientes, setPacientes, paciente, setPaciente }) => {
             type="text"
             placeholder="Nombre de la Mascota"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
+            value={user.firstName}
+            onChange={handleChange}
           />
         </div>
 

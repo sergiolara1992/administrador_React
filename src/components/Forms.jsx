@@ -1,22 +1,38 @@
 import { useState, useEffect } from "react";
 import Error from "./Error";
+import axios from "axios";
+import React from "react";
 
 const Forms = ({ pacientes, setPacientes, paciente, setPaciente }) => {
   const [nombre, setNombre] = useState("");
+  const [segundoNombre, setSegundoNombre] = useState("");
   const [propietario, setPropietario] = useState("");
   const [email, setEmail] = useState("");
-  const [fecha, setFecha] = useState("");
-  const [sintomas, setSintomas] = useState("");
+  
 
+  const [user, setUser] = React.useState({
+    email: "",
+    firstName: "",
+    middleName: "",
+    firstLastName: "",
+    secondLastName: "",
+    password: "",
+  });
   const [error, setError] = useState(false);
+
+   const handleChange = (e) => {
+     setUser({
+       ...user,
+       [e.target.name]: e.target.value,
+     });
+   };
 
   useEffect(() => {
     if (Object.keys(paciente).length > 0) {
       setNombre(paciente.nombre);
       setPropietario(paciente.propietario);
       setEmail(paciente.email);
-      setFecha(paciente.fecha);
-      setSintomas(paciente.sintomas);
+      
     }
   }, [paciente]);
 
@@ -30,7 +46,7 @@ const Forms = ({ pacientes, setPacientes, paciente, setPaciente }) => {
     e.preventDefault();
 
     /* VALIDACION DEL FORMULARIO */
-    if ([nombre, propietario, email, fecha, sintomas].includes("")) {
+    if ([nombre, propietario, email,].includes("")) {
       setError(true);
       return;
     }
@@ -43,8 +59,7 @@ const Forms = ({ pacientes, setPacientes, paciente, setPaciente }) => {
       nombre,
       propietario,
       email,
-      fecha,
-      sintomas,
+     
     };
 
     if (paciente.id) {
@@ -62,12 +77,21 @@ const Forms = ({ pacientes, setPacientes, paciente, setPaciente }) => {
       setPacientes([...pacientes, objetoPaciente]);
     }
 
+    /* PETICIONES AXIOS */
+
+    console.log("segundoPaso");
+    const loginUrl =
+      "https://ukks5dvo8b.execute-api.us-east-1.amazonaws.com/dev/userpet/create";
+
+    axios.post(loginUrl, user).then((response) => {
+      console.log("tercerPaso");
+    });
+
     /* REINICIAR EL FORM */
     setNombre("");
     setPropietario("");
     setEmail("");
-    setFecha("");
-    setSintomas("");
+   
   };
 
   return (
@@ -140,37 +164,7 @@ const Forms = ({ pacientes, setPacientes, paciente, setPaciente }) => {
           />
         </div>
 
-        <div className="mt-5">
-          <label
-            htmlFor="alta"
-            className="block text-gray-700 uppercase font-bold"
-          >
-            Alta
-          </label>
-          <input
-            id="alta"
-            type="date"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-            value={fecha}
-            onChange={(e) => setFecha(e.target.value)}
-          />
-        </div>
-
-        <div className="mt-5">
-          <label
-            htmlFor="sintomas"
-            className="block text-gray-700 uppercase font-bold"
-          >
-            Sintomas
-          </label>
-          <textarea
-            id="sintomas"
-            placeholder="Describe los sintomas"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-            value={sintomas}
-            onChange={(e) => setSintomas(e.target.value)}
-          />
-        </div>
+       
 
         <input
           type="submit"

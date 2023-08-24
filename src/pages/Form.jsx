@@ -45,20 +45,7 @@ function Form() {
         />
       </div>
 
-      <div className="mt-12 md:flex  ">
-        <Forms
-          pacientes={pacientes}
-          setPacientes={setPacientes}
-          paciente={paciente}
-          setPaciente={setPaciente}
-        />
-
-        <ListadoPacientes
-          pacientes={pacientes}
-          setPaciente={setPaciente}
-          eliminarPaciente={eliminarPaciente}
-        />
-      </div>
+      
     </div>
   );
 }
