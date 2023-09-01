@@ -6,6 +6,8 @@ import axios from "axios";
 const Register = () => {
   const [nombre, setNombre] = useState("");
 
+  
+
   const [user, setUser] = useState({
     email: "",
     firstName: "",
@@ -18,23 +20,21 @@ const Register = () => {
   const handleChange = (e) => {
     setUser({
       ...user,
-      [e.target.name]: e.target.value,
+      [e.target.id]: e.target.value,
     });
   };
 
-  /* PETICIONES AXIOS */
-
    const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("primerPaso");
+     e.preventDefault();
+     console.log("primerPaso");
 
-  
-  const loginUrl =
-    "https://ukks5dvo8b.execute-api.us-east-1.amazonaws.com/dev/userpet/create";
+    
+     /* PETICIONES AXIOS */
 
-  axios.post(loginUrl, user).then((response) => {
-   
-  });
+     const loginUrl =
+       "https://ukks5dvo8b.execute-api.us-east-1.amazonaws.com/dev/userpet/create";
+
+     axios.post(loginUrl, user).then((response) => {});
    };
 
   return (
@@ -53,7 +53,7 @@ const Register = () => {
                 className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
                 placeholder="Enter your First Name"
                 value={user.firstName}
-                onChange={(e) => setNombre(e.target.value)}
+                onChange={handleChange}
               />
             </div>
 
@@ -80,7 +80,7 @@ const Register = () => {
             <div className="mt-8">
               <label className="text-xl font-bold">Second Last Name</label>
               <input
-                id="SecondLastName"
+                id="secondLastName"
                 className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
                 placeholder="Enter your Second Last Name"
                 value={user.secondLastName}
@@ -110,6 +110,9 @@ const Register = () => {
               />
             </div>
           </div>
+          <div className="bg-indigo-600 p-3 text-white text-center uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors mt-20 rounded-lg active:scale-[.98] active:duration-75 transition-all ">
+            <button type="submit">REGISTER</button>
+          </div>
         </div>
       </div>
     </form>
@@ -119,12 +122,3 @@ const Register = () => {
 export default Register;
 
 
-
-  /*          email: "",
-    firstName: "",
-    middleName: "",
-    firstLastName: "",
-    secondLastName: "",
-    password: "",
-        </div> */
- 

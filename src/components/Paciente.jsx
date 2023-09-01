@@ -25,8 +25,6 @@ const Paciente = ({paciente, setPaciente, eliminarPaciente}) => {
         Email: {""} <span className="font-normal normal-case">{email}</span>
       </p>
       
-      
-
       <div>
         <button
           className="py-2 px-10 mr-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase rounded-lg"
